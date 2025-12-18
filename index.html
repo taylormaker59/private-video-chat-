@@ -36,4 +36,37 @@ document.getElementById("signupForm").onsubmit = function(e) {
   document.getElementById("message").innerText =
     "Application submitted. Await approval.";
 };
+<script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
+import { getFirestore, collection, addDoc } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
+
+const firebaseConfig = {
+  apiKey: "PASTE_HERE",
+  authDomain: "PASTE_HERE",
+  projectId: "PASTE_HERE",
+  storageBucket: "PASTE_HERE",
+  messagingSenderId: "PASTE_HERE",
+  appId: "PASTE_HERE"
+};
+
+const app = initializeApp(firebaseConfig);
+const db = getFirestore(app);
+
+document.getElementById("signupForm").onsubmit = async function(e) {
+  e.preventDefault();
+
+  const email = document.querySelector("input[type=email]").value;
+  const country = document.querySelector("select").value;
+
+  await addDoc(collection(db, "applications"), {
+    email,
+    country,
+    status: "pending",
+    isAdult: true,
+    created: new Date()
+  });
+
+  document.getElementById("message").innerText =
+    "Application submitted. Await approval.";
+};
 </script>
