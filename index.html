@@ -1,20 +1,39 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Private Video Chat</title>
-  <meta name="theme-color" content="#000000" />
-  <link rel="manifest" href="manifest.json" />
-</head>
-<body style="background:#000;color:#fff;font-family:sans-serif;text-align:center;padding:40px">
 
-  <h1>Private Video Chat</h1>
-  <p>18+ only. Approval required.</p>
+<h1>Private Video Chat</h1>
 
-  <button style="padding:15px 30px;font-size:18px;">
-    Enter
+<form id="signupForm" style="max-width:400px;margin:auto;text-align:left">
+
+  <label>Email</label><br>
+  <input type="email" required style="width:100%;padding:10px"><br><br>
+
+  <label>Country</label><br>
+  <select required style="width:100%;padding:10px">
+    <option value="">Select country</option>
+    <option>Japan</option>
+    <option>South Korea</option>
+    <option>Philippines</option>
+    <option>Thailand</option>
+    <option>Vietnam</option>
+    <option>Other</option>
+  </select><br><br>
+
+  <label>
+    <input type="checkbox" required>
+    I confirm I am 18 years or older
+  </label><br><br>
+
+  <button type="submit" style="padding:12px;width:100%;font-size:16px">
+    Apply for Access
   </button>
 
-</body>
-</html>
+</form>
+
+<p id="message" style="margin-top:20px;color:lightgreen"></p>
+
+<script>
+document.getElementById("signupForm").onsubmit = function(e) {
+  e.preventDefault();
+  document.getElementById("message").innerText =
+    "Application submitted. Await approval.";
+};
+</script>
